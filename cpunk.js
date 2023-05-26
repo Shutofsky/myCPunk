@@ -260,13 +260,15 @@ function onKey(event) {
 		buffer.textContent = gameTable[curRow][curCol].char;
 	} else if (event.code === 'Enter' || event.code === 'NumpadEnter') {
 		timeFlag = 1; // Запускаем отсчёт с первого выбора!
-		delHL(curRow, curCol, colFlag);
-		colFlag = (colFlag + 1) % 2;
-		setHL(curRow, curCol, colFlag);
-		buffer.textContent = '';
-		bfix.textContent += gameTable[curRow][curCol].innerText + " ";
-		gameTable[curRow][curCol].innerText = '';
-		compareHack();
+		if (gameTable[curRow][curCol].innerText != '') {
+			delHL(curRow, curCol, colFlag);
+			colFlag = (colFlag + 1) % 2;
+			setHL(curRow, curCol, colFlag);
+			buffer.textContent = '';
+			bfix.textContent += gameTable[curRow][curCol].innerText + " ";
+			gameTable[curRow][curCol].innerText = '';
+			compareHack();
+		}
 		// console.log("Enter");
 	}	
 }
